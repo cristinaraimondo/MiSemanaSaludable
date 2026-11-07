@@ -1,0 +1,1 @@
+document.getElementById('year').textContent=new Date().getFullYear();document.getElementById('join-button').addEventListener('click',()=>{alert('¡Gracias por tu interés! Estamos preparando las suscripciones. Muy pronto vas a poder sumarte.');});
