@@ -1,4 +1,4 @@
-document.getElementById('year').textContent=new Date().getFullYear();document.getElementById('join-button').addEventListener('click',()=>{alert('¡Gracias por tu interés! Estamos preparando las suscripciones. Muy pronto vas a poder sumarte.');});
+document.getElementById('year').textContent=new Date().getFullYear();
 (function(){
 'use strict';
 const grid=document.getElementById('public-recipe-grid');
@@ -36,7 +36,7 @@ if(r.imagen_url){photo.style.backgroundImage='url('+JSON.stringify(r.imagen_url)
 const body=el('div','recipe-body');
 body.append(el('span','recipe-tag',(r.categoria||'RECETA').toUpperCase()),el('h3','',r.titulo),el('p','',r.descripcion||'Una receta rica para disfrutar cada día.'));
 const button=el('a','recipe-view','Quiero acceder a esta receta');
-button.href='#planes';
+button.href='mi-cuenta.html';
 body.append(button);card.append(photo,body);grid.append(card);
 }
 grid.hidden=false;sample.hidden=true;note.hidden=true;
