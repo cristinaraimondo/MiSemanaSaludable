@@ -17,7 +17,7 @@ detail.append(el('span','recipe-tag',recipe.categoria||'RECETA'),el('h2','',reci
 if(recipe.descripcion)detail.append(el('p','detail-description',recipe.descripcion));
 const bits=[];if(recipe.minutos)bits.push(recipe.minutos+' minutos');if(recipe.porciones)bits.push(recipe.porciones+' porciones');
 if(bits.length)detail.append(el('p','detail-meta',bits.join(' · ')));
-detail.append(el('h3','','Ingredientes'),list(recipe.ingredientes,false),el('h3','','Preparación'),list(recipe.pasos,true));
+detail.append(el('p','','La receta completa está reservada para suscriptores.'));
 dialog.showModal();
 }
 close.addEventListener('click',()=>dialog.close());
@@ -25,7 +25,7 @@ dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();
 async function load(){
 try{
 const db=window.supabase.createClient(window.MSS_SUPABASE_URL,window.MSS_SUPABASE_KEY);
-const {data,error}=await db.from('recetas').select('id,titulo,descripcion,categoria,minutos,porciones,imagen_url,ingredientes,pasos').eq('publicada',true).order('created_at',{ascending:false});
+const {data,error}=await db.from('recetas_vitrina').select('id,titulo,descripcion,categoria,minutos,imagen_url').order('created_at',{ascending:false});
 if(error)throw error;
 if(!data||!data.length)return;
 grid.replaceChildren();
@@ -35,8 +35,8 @@ const photo=el('div','recipe-image');
 if(r.imagen_url){photo.style.backgroundImage='url('+JSON.stringify(r.imagen_url)+')';}else{photo.classList.add('recipe-no-image');photo.textContent='✿';}
 const body=el('div','recipe-body');
 body.append(el('span','recipe-tag',(r.categoria||'RECETA').toUpperCase()),el('h3','',r.titulo),el('p','',r.descripcion||'Una receta rica para disfrutar cada día.'));
-const button=el('button','recipe-view','Ver receta completa');
-button.type='button';button.addEventListener('click',()=>openRecipe(r));
+const button=el('a','recipe-view','Quiero acceder a esta receta');
+button.href='#planes';
 body.append(button);card.append(photo,body);grid.append(card);
 }
 grid.hidden=false;sample.hidden=true;note.hidden=true;
