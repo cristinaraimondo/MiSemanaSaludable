@@ -1,0 +1,1 @@
+window.MSS_SUPABASE_URL='https://ljgzjdnsgmbwnlosokse.supabase.co';window.MSS_SUPABASE_KEY='sb_publishable_wYR6ngY7S2ESw31f8Y5JBg_0BIYzDB3';
